@@ -31,7 +31,7 @@ public class AjaxAuthenticationFilter extends AbstractAuthenticationProcessingFi
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
         if(isJson(request)) {
             Member member = objectMapper.readValue(request.getReader(), Member.class);
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(member.getId(), member.getPassword());
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(member.getUsername(), member.getPassword());
             return getAuthenticationManager().authenticate(authentication);
         } else {
             throw new AccessDeniedException("Don't use content type for " + request.getContentType());

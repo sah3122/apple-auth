@@ -17,6 +17,6 @@ public class UserDetailsAdaptor extends User {
     }
 
     public UserDetailsAdaptor(Member member, List<GrantedAuthority> authorities) {
-        super(member.getId(), member.getPassword(), authorities);
+        super(member.getUsername(), member.getPassword(), authorities);
     }
 }
