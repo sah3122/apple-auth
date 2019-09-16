@@ -8,10 +8,12 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by dongchul on 2019-09-10.
  */
+@Component
 public class AjaxUserDetailsService implements UserDetailsService {
 
     @Autowired
