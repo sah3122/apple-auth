@@ -18,6 +18,7 @@ public abstract class JWTUtil {
         return createToken(userDetails, DateUtil.nowAfterDaysToDate(JwtInfo.EXPIRES_LIMIT));
     }
 
+    //토큰 발행
     public static String createToken(UserDetails userDetails, Date date) {
         try {
             return JWT.create()
@@ -31,6 +32,7 @@ public abstract class JWTUtil {
         }
     }
 
+    //토큰 검사
     public static Boolean verify(String token) {
         try {
             JWTVerifier verifier = JWT.require(JwtInfo.getAlgorithm()).build();

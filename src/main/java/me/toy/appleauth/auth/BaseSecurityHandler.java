@@ -24,6 +24,7 @@ import java.util.ArrayList;
 @Component
 public class BaseSecurityHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
 
+    //인증 성공시 Header에 토큰을 담아 보낸다.
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         UserDetails userDetails = new UserDetailsAdaptor(authentication.getPrincipal().toString(), new ArrayList<>(authentication.getAuthorities()));
