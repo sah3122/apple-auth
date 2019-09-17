@@ -8,5 +8,13 @@ Content-Type: application/json;charset=UTF-8
 }
 
 ###
-
+//Role User Test Call
 GET http://localhost:8080/
+jwt-header:
+
+###
+// Refresh Test Call
+GET http://localhost:8080/refresh
+jwt-header:
+
+###
