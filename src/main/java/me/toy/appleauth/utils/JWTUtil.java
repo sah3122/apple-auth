@@ -8,7 +8,10 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by dongchul on 2019-09-10.
@@ -27,6 +30,22 @@ public abstract class JWTUtil {
                     .withClaim("role", userDetails.getAuthorities().toArray()[0].toString())
                     .withExpiresAt(date)
                     .sign(JwtInfo.getAlgorithm());
+        } catch (JWTCreationException createEx) {
+            return null;
+        }
+    }
+
+    // refresh token 에는 어떤 정보가 들어가 있어야 할까
+    public static String createRefreshToken(UserDetails userDetails) {
+        try {
+            return JWT.create()
+                    .withIssuer(JwtInfo.ISSUER)
+                    .withIssuedAt(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                    .withJWTId(UUID.randomUUID().toString())
+                    .withClaim("id", userDetails.getUsername())
+                    .withExpiresAt(DateUtil.nowAfterDaysToDate(JwtInfo.REFRESH_EXPIRES_LIMIT))
+                    .sign(JwtInfo.getAlgorithm());
+
         } catch (JWTCreationException createEx) {
             return null;
         }

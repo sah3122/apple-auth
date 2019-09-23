@@ -10,6 +10,7 @@ public abstract class JwtInfo {
     public static final String ISSUER = "dongchul";
     public static final String TOKEN_KEY = "sah3122.github.io";
     public static final long EXPIRES_LIMIT = 3L;
+    public static final long REFRESH_EXPIRES_LIMIT = 30L;
 
     public static Algorithm getAlgorithm() {
         try {
